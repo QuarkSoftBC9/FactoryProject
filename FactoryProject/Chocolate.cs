@@ -59,39 +59,47 @@ namespace FactoryProject
             int peanut = int.Parse(Console.ReadLine());
 
 
-            for (int i = 0; i < dark; i++)
-            {
-                Chocolate newDarkChoco = new Chocolate(Kind.Dark);
-                chocolates.Add(newDarkChoco);
-            }
+            //for (int i = 0; i < dark; i++)
+            //{
+            //    Chocolate newDarkChoco = new Chocolate(Kind.Dark);
+            //    chocolates.Add(newDarkChoco);
+            //}
 
-            for (int i = 0; i < white; i++)
-            {
-                Chocolate newWhiteChoco = new Chocolate(Kind.White);
-                chocolates.Add(newWhiteChoco);
-            }
+            //for (int i = 0; i < white; i++)
+            //{
+            //    Chocolate newWhiteChoco = new Chocolate(Kind.White);
+            //    chocolates.Add(newWhiteChoco);
+            //}
 
-            for (int i = 0; i < milk; i++)
-            {
-                Chocolate newMilkChoco = new Chocolate(Kind.Milk);
-                chocolates.Add(newMilkChoco);
-            }
+            //for (int i = 0; i < milk; i++)
+            //{
+            //    Chocolate newMilkChoco = new Chocolate(Kind.Milk);
+            //    chocolates.Add(newMilkChoco);
+            //}
 
-            for (int i = 0; i < almond; i++)
-            {
-                Chocolate newAlmondChoco = new Chocolate(Kind.Almond);
-                chocolates.Add(newAlmondChoco);
-            }
+            //for (int i = 0; i < almond; i++)
+            //{
+            //    Chocolate newAlmondChoco = new Chocolate(Kind.Almond);
+            //    chocolates.Add(newAlmondChoco);
+            //}
 
-            for (int i = 0; i < peanut; i++)
-            {
-                Chocolate newPeanutChoco = new Chocolate(Kind.Peanut);
-                chocolates.Add(newPeanutChoco);
-            }
+            AddChoco(chocolates, peanut);
+            AddChoco(chocolates, milk);
+            AddChoco(chocolates, white);
+            AddChoco(chocolates, dark);
+            AddChoco(chocolates, almond);
 
 
             return chocolates;
         }
 
+        private static void AddChoco(List<Chocolate> chocolates, int kind)
+        {
+            for (int i = 0; i < kind; i++)
+            {
+                Chocolate choco = new Chocolate((Kind)Enum.Parse(typeof(Kind), nameof(kind), true));
+                chocolates.Add(choco);
+            }
+        }
     }
 }

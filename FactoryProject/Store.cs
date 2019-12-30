@@ -69,63 +69,73 @@ namespace FactoryProject
                 else //(ChocolateKind == Kind.Almond)
                     almondChocos += 1;
             }
+            var almondChocolates = ChocolateListQuery(almondChocos, "Almond");
+            var whiteChocolates = ChocolateListQuery(whiteChocos, "White");
+            var darkChocolates = ChocolateListQuery(darkChocos, "Dark");
+            var peanutChocolates = ChocolateListQuery(peanutChocos, "Peanut");
+            var milkChocolates = ChocolateListQuery(milkChocos, "Milk");
+ //           var almondChocolates = (from c in Chocolates
+ //                                   where c.ChocolateKind == Kind.Almond
+ //                                   orderby c.DateProduced ascending
+ //                                   select c).Take(almondChocos);
+//
+ //           var whiteChocolates = (from c in Chocolates
+  //                                 where c.ChocolateKind == Kind.White
+ //                                  orderby c.DateProduced ascending
+  //                                 select c).Take(whiteChocos);//
+//
+ //           var darkChocolates = (from c in Chocolates
+  //                                where c.ChocolateKind == Kind.Dark
+   //                               orderby c.DateProduced ascending
+   //                              select c).Take(darkChocos);
 
-            var almondChocolates = (from c in Chocolates
-                                    where c.ChocolateKind == Kind.Almond
-                                    orderby c.DateProduced ascending
-                                    select c).Take(almondChocos);
+//            var peanutChocolates = (from c in Chocolates
+ //                                   where c.ChocolateKind == Kind.Peanut
+ //                                   orderby c.DateProduced ascending
+  //                                  select c).Take(peanutChocos);
 
-            var whiteChocolates = (from c in Chocolates
-                                   where c.ChocolateKind == Kind.White
-                                   orderby c.DateProduced ascending
-                                   select c).Take(whiteChocos);
-
-            var darkChocolates = (from c in Chocolates
-                                  where c.ChocolateKind == Kind.Dark
-                                  orderby c.DateProduced ascending
-                                  select c).Take(darkChocos);
-
-            var peanutChocolates = (from c in Chocolates
-                                    where c.ChocolateKind == Kind.Peanut
-                                    orderby c.DateProduced ascending
-                                    select c).Take(peanutChocos);
-
-            var milkChocolates = (from c in Chocolates
-                                  where c.ChocolateKind == Kind.Milk
-                                  orderby c.DateProduced ascending
-                                  select c).Take(milkChocos);
+//           var milkChocolates = (from c in Chocolates
+ //                                 where c.ChocolateKind == Kind.Milk
+ //                                 orderby c.DateProduced ascending
+ //                                 select c).Take(milkChocos);
 
             List<Chocolate> chocolatesList = new List<Chocolate>();
 
-            foreach (var item in almondChocolates)
-            {
-                chocolatesList.Add(item); //Adding selected values to our list
-                Chocolates.Remove(item);//Removing them from warehouse
-            }
+  //          foreach (var item in almondChocolates)
+  //         {
+  //             chocolatesList.Add(item); //Adding selected values to our list
+ //               Chocolates.Remove(item);//Removing them from warehouse
+  //          }
+  //
+   //         foreach (var item in whiteChocolates)
+    //        {
+    //            chocolatesList.Add(item);
+   //             Chocolates.Remove(item);
+    //        }
+//
+ //           foreach (var item in darkChocolates)
+  //          {
+   //             chocolatesList.Add(item);
+    //            Chocolates.Remove(item);
+     //       }
+///
+  //          foreach (var item in peanutChocolates)
+   ///         {
+     //           chocolatesList.Add(item);
+      //          Chocolates.Remove(item);
+       //     }
+//
+  //          foreach (var item in milkChocolates)
+    //        {
+     //           chocolatesList.Add(item);
+      //          Chocolates.Remove(item);
+       //     }
 
-            foreach (var item in whiteChocolates)
-            {
-                chocolatesList.Add(item);
-                Chocolates.Remove(item);
-            }
-
-            foreach (var item in darkChocolates)
-            {
-                chocolatesList.Add(item);
-                Chocolates.Remove(item);
-            }
-
-            foreach (var item in peanutChocolates)
-            {
-                chocolatesList.Add(item);
-                Chocolates.Remove(item);
-            }
-
-            foreach (var item in milkChocolates)
-            {
-                chocolatesList.Add(item);
-                Chocolates.Remove(item);
-            }
+            AddRemoveChocolates(chocolatesList, milkChocolates);
+            AddRemoveChocolates(chocolatesList, peanutChocolates);
+            AddRemoveChocolates(chocolatesList, darkChocolates);
+            AddRemoveChocolates(chocolatesList, whiteChocolates);
+            AddRemoveChocolates(chocolatesList, almondChocolates);
 
             ChocolateOrder newOrder = new ChocolateOrder(chocolatesList, this, customer);
             customer.ChocoOrders.Add(newOrder);
@@ -143,6 +153,21 @@ namespace FactoryProject
 
             Income += newOrder.TotalPrice;
 
+        }
+        private IEnumerable<Chocolate> ChocolateListQuery(int Choco,string kind)
+        {
+            return (from c in ChocolateWarehouse
+                    where c.ChocolateKind == (Kind)Enum.Parse(typeof(Kind),kind,true)
+                    orderby c.DateProduced ascending
+                    select c).Take(Choco);
+        }
+         private void AddRemoveChocolates(List<Chocolate> chocolatesList, IEnumerable<Chocolate> chocolatesKind)
+        {
+            foreach (var item in chocolatesKind)
+            {
+                chocolatesList.Add(item);
+                ChocolateWarehouse.Remove(item);
+            }
         }
     }
 }

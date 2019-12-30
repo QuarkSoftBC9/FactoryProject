@@ -46,7 +46,7 @@ namespace FactoryProject
             }
             else
             {
-                throw new Exception("Order cannot must contain at least 1 chocolate!");
+                throw new ChocolateOrderNoneException("Order cannot must contain at least 1 chocolate!");
             }
         }
 

@@ -22,5 +22,21 @@ namespace FactoryProject
 
         }
     }
+    class LessZeroException : Exception
+    {
+
+        public LessZeroException(string message) : base(message)
+        {
+
+        }
+    }
+    class StockException : Exception
+    {
+
+        public StockException(string message) : base(message)
+        {
+
+        }
+    }
 
 }

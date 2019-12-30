@@ -137,7 +137,7 @@ namespace FactoryProject
                         break;
 
                     case "3":
-                        relatedFactory.Resuplpy();
+                        relatedFactory.Resupply();
                         break;
 
                     case "4":
@@ -328,19 +328,19 @@ namespace FactoryProject
 
         public static void PlaceOrder(Customer customer, Organisation company)
         {
-            Console.WriteLine("How mayn dark chocolates do you want to buy?");
+            Console.WriteLine("How many dark chocolates do you want to buy?");
             int dark = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("How mayn dark chocolates do you want to buy?");
+            Console.WriteLine("How many dark chocolates do you want to buy?");
             int white = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("How mayn dark chocolates do you want to buy?");
+            Console.WriteLine("How many dark chocolates do you want to buy?");
             int milk = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("How mayn dark chocolates do you want to buy?");
+            Console.WriteLine("How many dark chocolates do you want to buy?");
             int peanut = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("How mayn dark chocolates do you want to buy?");
+            Console.WriteLine("How many dark chocolates do you want to buy?");
             int almond = int.Parse(Console.ReadLine());
 
             List<Chocolate> desiredChocolates = customer.CreateOrder(dark, white, milk, peanut, almond);
